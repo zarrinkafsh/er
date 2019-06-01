@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+  <title>{% block title %}my site{% endblock %}</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="h-100" >
+<div class="container-fliud row h-100">
+
+  <div class="col-2 h-100" style="background-color:#456">
+    <div class="sidebar-sticky">
+          <ul class="nav flex-column" style="text-align">
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:products'%}">
+                      Products
+                    </a>
+                    <hr>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:customers'%}">
+                      Customers
+                    </a>
+                    <hr>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light nav-link" href="#">
+                      Products
+                    </a>
+                    <hr>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light nav-link" href="#">
+                      Customers
+                    </a>
+                    <hr>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light  nav-link" href="#">
+                      Reports
+                    </a>
+                    <hr>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light nav-link" href="#">
+                      Integrations
+                    </a>
+                  </li>
+                </ul>
+        </div>
+  </div>
+  <div class="col-8">
+    {% block content %}
+    {% endblock %}
+  </div>
+</div>
+</body>
+</html>
