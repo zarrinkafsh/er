@@ -3,7 +3,9 @@
 {% block title %}customers{%endblock%}
 {% block content %}
 <form action="{% url 'app1:customers' %}" method="post">
-  <fieldset class="col-11" style="background-color:#bdc1c4;color:#082d52;padding:25px;">
+  <fieldset class="col-11"
+            style="background-color:#bdc1c4;color:#082d52;padding:25px;
+                  border-radius:10px;">
     <legend>{{table_name}}</legend>
     {% csrf_token %}
 
@@ -26,8 +28,8 @@
 <div class="alert alert-success" role="alert">
  {{massage}}
 </div>
-{%endif%}<br>
-<div class="" style="background-color:#eee">
+{%endif%}
+<div class="" style="background-color:#eee;border-radius:20px;overflow:scroll;height:400px">
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>

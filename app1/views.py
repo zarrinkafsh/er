@@ -20,7 +20,7 @@ def products(request):
     fields = ['ProductName','ProductCode']
     con ={'list':list,'fields':fields,'table_name':'Add/edit Products'}
     if request.method == 'POST':
-        form = forms.aa(request.POST)
+        form = forms.Productform(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             obj = models.Products()
@@ -31,7 +31,7 @@ def products(request):
             con['massage']='ok'
         else:
             con['massage']='not ok'
-    form = forms.aa()
+    form = forms.Productform()
     con['form']=form
     return render(request, 'app1/product.html',con)
 

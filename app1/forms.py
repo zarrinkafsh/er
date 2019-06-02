@@ -1,22 +1,7 @@
 from django import forms
 from . import models
 
-
-class Userform(forms.ModelForm):
-    class Meta:
-        model = models.Users
-        fields = ['username','password']
-        widgets = {
-            'username': forms.TextInput(
-                attrs={'class': 'form-control',
-                        'placeholder':'Username'}),
-            'password': forms.PasswordInput(
-                attrs={'class': 'form-control',
-                        'placeholder':'Password'}),
-        }
-
-
-class aa(forms.ModelForm):
+class Productform(forms.ModelForm):
     class Meta:
         model = models.Products
         fields = '__all__'
@@ -30,6 +15,7 @@ class aa(forms.ModelForm):
                         attrs={'class': 'form-control',
                                 'placeholder':'Product Code'}),
         }
+
 class Customerform(forms.ModelForm):
     class Meta:
         model = models.Customers

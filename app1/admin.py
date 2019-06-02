@@ -12,4 +12,6 @@ admin.site.register(models.ProductFeatures)
 admin.site.register(models.ProductSuites)
 admin.site.register(models.ProductVersion)
 admin.site.register(models.ProductVersionDetails)
-admin.site.register(models.Users)
+
+
+##

@@ -22,7 +22,7 @@ class ProductVersionDetails(models.Model):
 class ProductSuites(models.Model):
     product_suite_name = models.CharField(max_length=200)
     product_suite_code = models.CharField(max_length=200)
-    product_version_id = models.ForeignKey('productVersion', on_delete=models.CASCADE)
+    product_version_detail_id = models.ForeignKey('ProductVersionDetails', on_delete=models.CASCADE)
 
 class ActiveFeatures(models.Model):
     product_suite_id = models.ForeignKey('productSuites', on_delete=models.CASCADE)
@@ -76,10 +76,6 @@ class LicenseKeys(models.Model):
         choices=STATUS,
         default='1',
     )
-
-class Users(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=200)
 
 
 ###
