@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head>
+  <title>Login asas</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="">
+<div class="container">
+
+  <div class="form-group">
+    <form method="post" action="/ac/login/">
+      {% csrf_token %}
+    <fieldset style="background-color:#eee;color:#082d52;padding:25px;border-radius:20px;width:500px;">
+      <legend>Login</legend>
+        <div class="form-group row">
+          <label class="col-sm-3" for="id_Username">Username</label>
+          <div class="col-sm-9">
+            <input type="text" name="username" class="form-control" placeholder="Username" maxlength="100" required="" id="id_username">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3" for="id_Password">Password</label>
+          <div class="col-sm-9">
+            <input type="password" name="password" class="form-control" placeholder="Password" maxlength="200" required="" id="id_password">
+          </div>
+        </div>
+      <div class="form-group row">
+      <div class="col-sm-5">
+        <button type="submit" class="btn btn-primary" style="float:right;">login</button>
+      </div>
+      </div>
+      {% if form.errors %}
+      <p style="color: red;">
+        Your username and password didn't match. Please try again.</p>
+      {% endif %}
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+
+</body></html>
