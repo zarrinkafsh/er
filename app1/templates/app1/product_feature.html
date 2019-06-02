@@ -1,14 +1,15 @@
 {% extends "app1/base1.html" %}
 
-{% block title %}customers{%endblock%}
+{% block style %}
+{% endblock %}
+{% block title %}product feature{%endblock%}
 {% block content %}
-<form autocomplete="off" action="{% url 'app1:customers' %}" method="post">
+<form autocomplete="off" action="{% url 'app1:products_feature' %}" method="post">
   <fieldset class="col-11"
             style="background-color:#bdc1c4;color:#082d52;padding:25px;
                   border-radius:10px;">
     <legend>{{table_name}}</legend>
     {% csrf_token %}
-
     {% for i in form %}
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="id_{{i.label}}">{{i.label}}</label>
@@ -41,12 +42,13 @@
   <tbody>
     {%for i in list%}
     <tr>
-      <td>{{i.customer_name}}</td>
-      <td>{{i.customer_code}}</td>
-      <td>{{i.description}}</td>
+      <td>{{i.product_feature_name}}</td>
+      <td>{{i.product_feature_code}}</td>
+      <td>{{i.product_id.product_name}}</td>
     </tr>
     {%endfor%}
   </tbody>
 </table>
 </div>
+
 {% endblock %}

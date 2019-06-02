@@ -4,6 +4,8 @@
   <title>{% block title %}my site{% endblock %}</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {% block style %}{% endblock %}
 <style media="screen">
   hr{
     margin-top: 5px;
@@ -37,19 +39,19 @@
                   </li>
                   <li class="nav-item">
                     <a class="btn btn-outline-light nav-link" href="#">
-                      Contract detailss
+                      Contract details
                     </a>
                     <hr>
                   </li>
                   <li class="nav-item">
                     <a class="btn btn-outline-light  nav-link" href="#">
-                      Contractss
+                      Contracts
                     </a>
                     <hr>
                   </li>
                   <li class="nav-item">
                     <a class="btn btn-outline-light nav-link" href="#">
-                      License keyss
+                      License keys
                     </a>
                   </li>
                 </ul>
@@ -62,5 +64,6 @@
   </div>
   </div>
 </div>
+
 </body>
 </html>

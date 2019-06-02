@@ -2,7 +2,7 @@
 
 {% block title %}products{%endblock%}
 {% block content %}
-<form action="{% url 'app1:products' %}" method="post">
+<form autocomplete="off" action="{% url 'app1:products' %}" method="post">
   <fieldset class="col-11" style="background-color:#bdc1c4;color:#082d52;padding:25px; border-radius:10px;">
     <legend>{{table_name}}</legend>
     {% csrf_token %}

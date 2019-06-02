@@ -6,7 +6,7 @@ class Products(models.Model):
 
 class ProductVersion(models.Model):
     product_version_code = models.IntegerField()
-    release_date = models.DateTimeField()
+    release_date = models.DateField()
     description = models.TextField()
     product_id = models.ForeignKey('Products', on_delete=models.CASCADE)
 
@@ -48,10 +48,10 @@ class Contracts(models.Model):
 class ContractDetails(models.Model):
     contract_id = models.ForeignKey('Contracts', on_delete=models.CASCADE)
     product_bundle_id = models.ForeignKey('productBundle', on_delete=models.CASCADE)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    support_start_time = models.DateTimeField()
-    support_end_time = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    support_start_time = models.DateField()
+    support_end_time = models.DateField()
     description = models.TextField()
 
 class LicenseKeys(models.Model):

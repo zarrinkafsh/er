@@ -1,8 +1,18 @@
 {% extends "app1/base1.html" %}
 
-{% block title %}customers{%endblock%}
+{% block style %}
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <!-- Fengyuan Chen -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+
+{% endblock %}
+{% block title %}product vrsion{%endblock%}
 {% block content %}
-<form autocomplete="off" action="{% url 'app1:customers' %}" method="post">
+<form autocomplete="off" action="{% url 'app1:products_version' %}" method="post">
   <fieldset class="col-11"
             style="background-color:#bdc1c4;color:#082d52;padding:25px;
                   border-radius:10px;">
@@ -41,12 +51,20 @@
   <tbody>
     {%for i in list%}
     <tr>
-      <td>{{i.customer_name}}</td>
-      <td>{{i.customer_code}}</td>
+      <td>{{i.product_version_code}}</td>
+      <td>{{i.release_date}}</td>
       <td>{{i.description}}</td>
+      <td>{{i.product_id.product_name}}</td>
     </tr>
     {%endfor%}
   </tbody>
 </table>
 </div>
+<script>
+    $(function () {
+      $("#release_date").datepicker(
+      {format:'YYYY-mm-dd',});
+    });
+  </script>
+
 {% endblock %}

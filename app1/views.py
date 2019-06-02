@@ -4,7 +4,7 @@ from django.apps import apps
 from . import forms, models
 from django.views.decorators.csrf import csrf_protect
 from django.views import generic
-
+from datetime import datetime
 
 
 def index(request):
@@ -54,6 +54,53 @@ def customers(request):
     form = forms.Customerform()
     con['form']=form
     return render(request, 'app1/customers.html',con)
+
+
+def products_version(request):
+    print('version')
+    list = models.ProductVersion.objects.all()
+    fields = ['version code','release date', 'description', 'product']
+    con ={'list':list,'fields':fields,'table_name':'Add/edit Product Version'}
+    if request.method == 'POST':
+        form = forms.ProductVersionform(request.POST)
+        print('time',
+                    request.POST['product_version_code'],
+                    request.POST['product_id'],
+                    request.POST['description'])
+        produc = models.Products.objects.get(pk=request.POST['product_id'])
+        obj = models.ProductVersion()
+        obj.description = request.POST['description']
+        obj.product_version_code = int(request.POST['product_version_code'])
+        obj.product_id = produc
+        dat = request.POST.get('release_date')
+        obj.release_date = dat
+        obj.save()
+    form = forms.ProductVersionform()
+    con['form']=form
+    return render(request, 'app1/product_version.html',con)
+
+
+def products_feature(request):
+    list = models.ProductFeatures.objects.all()
+    fields = ['feature name','feature code','product']
+    con ={'list':list,'fields':fields,'table_name':'Add/edit Product Feature'}
+    if request.method == 'POST':
+        form = forms.ProductFeatureform(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            obj = models.ProductFeatures()
+            obj.product_feature_name = cd['product_feature_name']
+            obj.product_feature_code = cd['product_feature_code']
+            produc = models.Products.objects.get(pk=request.POST['product_id'])
+            obj.product_id = produc
+            obj.save()
+            print('ok')
+            con['massage']='ok'
+        else:
+            con['massage']='not ok'
+    form = forms.ProductFeatureform()
+    con['form']=form
+    return render(request, 'app1/product_feature.html',con)
 
 
 

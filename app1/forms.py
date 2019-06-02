@@ -1,5 +1,9 @@
 from django import forms
 from . import models
+from datetime import datetime
+from django.forms.widgets import Widget
+from django.utils import timezone
+from bootstrap_datepicker_plus import DatePickerInput
 
 class Productform(forms.ModelForm):
     class Meta:
@@ -35,28 +39,62 @@ class Customerform(forms.ModelForm):
                                 'rows':'4'}),
         }
 
-class b(forms.ModelForm):
-    ReleaseDate = forms.DateTimeField(
-                    input_formats=['%d/%m/%Y %H:%M'],
-                    widget=forms.DateTimeInput(attrs={
-                        'class': 'form-control datetimepicker-input',
-                        'data-target': '#datetimepicker1'
-                    })
-                )
+
+from .widgets import BootstrapDateTimePickerInput
+class DateForm(forms.Form):
+    date = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=BootstrapDateTimePickerInput()
+    )
+
+class ProductChoiceField(forms.ModelChoiceField):
+     def label_from_instance(self, obj):
+         return "Category: {}".format(obj.product_name)
+
+class ProductVersionform(forms.ModelForm):
+
+    release_date = forms.DateTimeField(
+        input_formats=['%Y-%m-%d %H:%M'],
+        widget=BootstrapDateTimePickerInput()
+    )
+    product_id = ProductChoiceField(queryset=models.Products.objects.all(),
+                                    empty_label='------no',
+                                    widget=forms.Select(attrs={'class': 'form-control input-sm'}))
     class Meta:
         model = models.ProductVersion
         fields = '__all__'
+        labels = {'product_version_code':'Version code'}
         widgets = {
-            'Description': forms.Textarea(
+            'description': forms.Textarea(
                         attrs={'class': 'form-control',
                                 'placeholder':'Description',
                                 'rows':'3'}),
-            'ProductID': forms.Select(
+            'product_id': forms.Select(
                         attrs={'class': 'form-control'}),
-            'ProductVersionCode': forms.NumberInput(
+            'product_version_code': forms.NumberInput(
                         attrs={'class': 'form-control'}),
         }
 
+
+class ProductFeatureform(forms.ModelForm):
+    product_id = ProductChoiceField(queryset=models.Products.objects.all(),
+                                    empty_label='------no',
+                                    widget=forms.Select(attrs={'class': 'form-control input-sm'}))
+    class Meta:
+        model = models.ProductFeatures
+        fields = '__all__'
+        labels = {'product_feature_name': 'Feature Name',
+                    'product_feature_code':'Feature Code'}
+        widgets = {
+            'product_feature_name': forms.TextInput(
+                        attrs={'class': 'form-control',
+                                'placeholder':'Feature Name'}),
+            'product_feature_code': forms.TextInput(
+                        attrs={'class': 'form-control',
+                                'placeholder':'Feature Code'}),
+            'product_id': forms.Select(
+                        attrs={'class': 'form-control'}),
+        }
 
 
 
