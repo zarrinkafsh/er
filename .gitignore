@@ -2,7 +2,7 @@
 *.log
 *.pot
 *.pyc
-app1/
+app1/migrations/*.py
 __pycache__
 db.sqlite3
 media
