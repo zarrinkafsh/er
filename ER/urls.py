@@ -20,5 +20,7 @@ from django.urls import path, re_path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app1.urls')),
-    path('ac/', include('django.contrib.auth.urls')),
+    path('ac/', include('django.contrib.auth.urls'), name='login'),
+    re_path(r'^jet/', include('jet.urls', 'jet')),
+    re_path(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 ]

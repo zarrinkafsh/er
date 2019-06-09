@@ -1,24 +1,27 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.apps import apps
-from . import forms, models
+from . import forms, models, tables
 from django.views.decorators.csrf import csrf_protect
 from django.views import generic
 from datetime import datetime
 
 
 def index(request):
-    form = forms.aa()
+    if request.method == 'POST':
+        print(request.POST)
+    form = forms.Productform()
     list = models.Products.objects.all()
     fields = ['Product Name','Product Code']
-    return render(request, 'app1/index.html',
+    return render(request, 'app1/index0.html',
                         {'form': form,'list':list,
                         'fields':fields})
 
 def products(request):
     list = models.Products.objects.all()
     fields = ['ProductName','ProductCode']
-    con ={'list':list,'fields':fields,'table_name':'Add/edit Products'}
+    con ={'list':list,'fields':fields,'table_name':'Add/edit Products',
+    'purl':'app1:product'}
     if request.method == 'POST':
         form = forms.Productform(request.POST)
         if form.is_valid():
@@ -38,7 +41,8 @@ def products(request):
 def customers(request):
     list = models.Customers.objects.all()
     fields = ['customer name','customer code', 'description']
-    con ={'list':list,'fields':fields,'table_name':'Add/edit Customers'}
+    con ={'list':list,'fields':fields,'table_name':'Add/edit Customers',
+    'purl':'app1:customer'}
     if request.method == 'POST':
         form = forms.Customerform(request.POST)
         if form.is_valid():
@@ -60,7 +64,8 @@ def products_version(request):
     print('version')
     list = models.ProductVersion.objects.all()
     fields = ['version code','release date', 'description', 'product']
-    con ={'list':list,'fields':fields,'table_name':'Add/edit Product Version'}
+    con ={'list':list,'fields':fields,'table_name':'Add/edit Product Version',
+    'purl':'app1:product_version'}
     if request.method == 'POST':
         form = forms.ProductVersionform(request.POST)
         print('time',
@@ -83,7 +88,8 @@ def products_version(request):
 def products_feature(request):
     list = models.ProductFeatures.objects.all()
     fields = ['feature name','feature code','product']
-    con ={'list':list,'fields':fields,'table_name':'Add/edit Product Feature'}
+    con ={'list':list,'fields':fields,'table_name':'Add/edit Product Feature',
+    'purl':'app1:product_feature'}
     if request.method == 'POST':
         form = forms.ProductFeatureform(request.POST)
         if form.is_valid():
@@ -102,6 +108,30 @@ def products_feature(request):
     con['form']=form
     return render(request, 'app1/product_feature.html',con)
 
+
+def products_version_detail(request):
+    print('version detail')
+    list = models.ProductVersionDetails.objects.all()
+    fields = ['version id','feature id']
+    table = tables.ProductVersionDetailsTable(list)
+    con ={'list':list,'table':table,
+        'table_name':'Add/edit Product Version Detail',
+        'purl':'app1:product_version_detail'}
+    if request.method == 'POST':
+        form = forms.ProductVersionDetailform(request.POST)
+        if form.is_valid():
+            product_vesion = models.ProductVersion.objects.get(pk=request.POST['product_version_id'])
+            product_feature = models.ProductVersion.objects.get(pk=request.POST['product_feature_id'])
+            obj = models.ProductVersionDetails()
+            obj.product_version_id = product_vesion
+            obj.product_feature_id = product_feature
+            obj.save()
+            con['massage']='ok'
+        else:
+            con['massage']='not ok'
+    form = forms.ProductVersionDetailform()
+    con['form']=form
+    return render(request, 'app1/all.html',con)
 
 
 

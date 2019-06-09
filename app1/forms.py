@@ -49,7 +49,7 @@ class DateForm(forms.Form):
 
 class ProductChoiceField(forms.ModelChoiceField):
      def label_from_instance(self, obj):
-         return "Category: {}".format(obj.product_name)
+         return "Name: {}".format(obj.product_name)
 
 class ProductVersionform(forms.ModelForm):
 
@@ -96,6 +96,33 @@ class ProductFeatureform(forms.ModelForm):
                         attrs={'class': 'form-control'}),
         }
 
+
+class ProductVersionChoiceField(forms.ModelChoiceField):
+     def label_from_instance(self, obj):
+         return "Code: {}".format(obj.product_version_code)
+class ProductFeaturenChoiceField(forms.ModelChoiceField):
+     def label_from_instance(self, obj):
+         return "Name: {}".format(obj.product_feature_name)
+
+class ProductVersionDetailform(forms.ModelForm):
+
+    product_version_id = ProductVersionChoiceField(queryset=models.ProductVersion.objects.all(),
+                                    empty_label='------no',
+                                    widget=forms.Select(attrs={'class': 'form-control input-sm'}))
+
+    product_feature_id = ProductFeaturenChoiceField(queryset=models.ProductFeatures.objects.all(),
+                                    empty_label='------no',
+                                    widget=forms.Select(attrs={'class': 'form-control input-sm'}))
+    class Meta:
+        model = models.ProductVersionDetails
+        fields = '__all__'
+        labels = {'product_version_code':'Version code'}
+        widgets = {
+            'product_version_id': forms.Select(
+                        attrs={'class': 'form-control'}),
+            'product_feature_id': forms.Select(
+                        attrs={'class': 'form-control'}),
+        }
 
 
 

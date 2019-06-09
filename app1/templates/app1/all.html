@@ -1,0 +1,12 @@
+{% extends "app1/base1.html" %}
+{% load django_tables2 %}
+{% block title %}Product version detail{%endblock%}
+{% block content %}
+{% include 'app1/form.html' %}
+<br>{%if massage%}
+<div class="alert alert-success" role="alert">
+ {{massage}}
+</div>
+{%endif%}
+  {% render_table table %}
+{% endblock %}

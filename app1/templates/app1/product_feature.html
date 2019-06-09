@@ -4,27 +4,7 @@
 {% endblock %}
 {% block title %}product feature{%endblock%}
 {% block content %}
-<form autocomplete="off" action="{% url 'app1:products_feature' %}" method="post">
-  <fieldset class="col-11"
-            style="background-color:#bdc1c4;color:#082d52;padding:25px;
-                  border-radius:10px;">
-    <legend>{{table_name}}</legend>
-    {% csrf_token %}
-    {% for i in form %}
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label" for="id_{{i.label}}">{{i.label}}</label>
-        <div class="col-sm-9">
-          {{ i }}
-        </div>
-      </div>
-    {%endfor%}
-    <div class="form-group row">
-    <div class="col-sm-5">
-      <button type="submit" class="btn btn-primary" style="float:right;">ثبت اطلاعات</button>
-    </div>
-    </div>
-    </fieldset>
-</form>
+{% include 'app1/form.html' %}
 <br>{%if massage%}
 <div class="alert alert-success" role="alert">
  {{massage}}

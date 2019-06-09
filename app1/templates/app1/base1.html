@@ -17,29 +17,35 @@
 <div class="container-fliud row h-100">
 
   <div class="col-2 h-100" style="background-color:#456;position:fixed;">
-    <div class="sidebar-sticky">
+    <div dir='ltr' class="sidebar-sticky">
           <ul class="nav flex-column" style="text-align">
                   <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:products'%}">
+                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:product'%}">
                       Products
                     </a>
                     <hr>
                   </li>
                   <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:customers'%}">
+                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:customer'%}">
                       Customers
                     </a>
                     <hr>
                   </li>
                   <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="#">
-                      Active features
+                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:product_version'%}">
+                      Product Version
                     </a>
                     <hr>
                   </li>
                   <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="#">
-                      Contract details
+                    <a class="btn btn-outline-light nav-link" href="{%url 'app1:product_feature'%}">
+                      Product Feature
+                    </a>
+                    <hr>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light  nav-link" href="{%url 'app1:product_version_detail'%}">
+                      Product Version Detail
                     </a>
                     <hr>
                   </li>
@@ -50,10 +56,18 @@
                     <hr>
                   </li>
                   <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="#">
-                      License keys
+                    <a class="btn btn-outline-light  nav-link" href="#">
+                      Contracts
                     </a>
+                    <hr>
                   </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-light  nav-link" href="#">
+                      Contracts
+                    </a>
+                    <hr>
+                  </li>
+
                 </ul>
         </div>
   </div>

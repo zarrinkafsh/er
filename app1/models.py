@@ -17,7 +17,7 @@ class ProductFeatures(models.Model):
 
 class ProductVersionDetails(models.Model):
     product_version_id = models.ForeignKey('ProductVersion', on_delete=models.CASCADE)
-    product_version_id = models.ForeignKey('ProductFeatures', on_delete=models.CASCADE)
+    product_feature_id = models.ForeignKey('ProductFeatures', on_delete=models.CASCADE)
 
 class ProductSuites(models.Model):
     product_suite_name = models.CharField(max_length=200)
